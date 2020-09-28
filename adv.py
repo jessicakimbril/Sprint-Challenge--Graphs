@@ -50,17 +50,18 @@ while len(visited) < len(room_graph): # while length of visited  is less than le
             if player.current_room.get_room_in_direction(move).id not in visited: # if move not in visited
                 path.append(move) # add move to path list
                 traversal_path.append(move) # add move to traversal_path list
-                player.travel(move) 
-                counter += 1
-                break
-
-        if len(room[currRoom]) == 0:
-            last_move = path.pop()
-            prior_direction = last_room[last_move]
-            traversal_path.append(prior_direction)
-            player.travel(prior_direction)
+                player.travel(move) # move the player
+                counter += 1 # add 1 to counter
+                break # break the loop
+        
+        # if there are no directions left, go back
+        if len(room[currRoom]) == 0: # if length of room[currRoom] is equal to zero
+            last_move = path.pop() # take the last move from path
+            prior_direction = last_room[last_move] # set prior directiont to last_room[last_move]
+            traversal_path.append(prior_direction) # add prior_direction to traversal_path list
+            player.travel(prior_direction) # move player back
             
-            break
+            break # break the loop
 
 # TRAVERSAL TEST - DO NOT MODIFY
 visited_rooms = set()
@@ -82,12 +83,12 @@ else:
 #######
 # UNCOMMENT TO WALK AROUND
 #######
-player.current_room.print_room_description(player)
-while True:
-    cmds = input("-> ").lower().split(" ")
-    if cmds[0] in ["n", "s", "e", "w"]:
-        player.travel(cmds[0], True)
-    elif cmds[0] == "q":
-        break
-    else:
-        print("I did not understand that command.")
+# player.current_room.print_room_description(player)
+# while True:
+#     cmds = input("-> ").lower().split(" ")
+#     if cmds[0] in ["n", "s", "e", "w"]:
+#         player.travel(cmds[0], True)
+#     elif cmds[0] == "q":
+#         break
+#     else:
+#         print("I did not understand that command.")
